@@ -57,6 +57,8 @@ end
 
 --Automatically place starting river tiles (Spring and Fork)
 function riverPlaceStartingTiles()
+-- don't place spring as a starting tile, let player pick the first tile
+--[[
     if springTile_GUID ~= nil then
         local location = computeStartingTileLocation(riverSpringTile_Location.position, riverSpringTile_Location.rotation)
 
@@ -66,6 +68,7 @@ function riverPlaceStartingTiles()
         addTile(location.xIndex, location.zIndex, springTile, location.tileRotation, false, true)
         springTile_GUID = nil
     end
+--]]
     if forkTile_GUID ~= nil then
         local location = computeStartingTileLocation(riverForkTile_Location.position, riverSpringTile_Location.rotation)
 
@@ -154,6 +157,8 @@ function riverPrepareStartingTiles(placeRiverAsStartingTile)
         if springTile_GUID == nil then
             springTile_GUID = EXPANSION_BAGS['River'].contents['RiverSpringTile'].guid
             springTile_expansion_id = 'River'
+            -- treat river spring tile like any other river tile
+            placeStartingItem('StartingTileRiver', 'River', 'RiverSpringTile', overrideRiverLocation, 0)
         end
         if lakeTile_GUID == nil then
             lakeTile_GUID = EXPANSION_BAGS['River'].contents['RiverLakeTile'].guid
@@ -163,21 +168,24 @@ function riverPrepareStartingTiles(placeRiverAsStartingTile)
 
     --Place the spring tile
     if springTile_GUID ~= nil then
-        --Initialize the position and rotation as if this is a starting tile
+        --Initialize the position and rotation as if this is a starting tile (typically just next to the other river tiles)
         riverSpringTile_Location = riverStartingSpringTileLocation
         if controlPanelSettings['RiverMixAll'] then
             riverSpringTile_Location = riverDefaultLocation
-        elseif not placeRiverAsStartingTile then
+        else
             riverSpringTile_Location = riverSpringTileLocation
         end
 
-        if takeObjectSafe(getObjectFromGUID(EXPANSION_BAGS[springTile_expansion_id].guid), {guid = springTile_GUID, position = riverSpringTile_Location.position, rotation = riverSpringTile_Location.rotation, smooth = false, callback_owner = Global, callback = "prepareStartingTileUnlock"}) == nil then
-            prepareStartingTileLock = false
+        -- because of the object layout on the table, this only needs to be done for River + River2 matches
+        if controlPanelSettings['StartingTileRiver'] and controlPanelSettings['StartingTileRiverII'] then
+            if takeObjectSafe(getObjectFromGUID(EXPANSION_BAGS[springTile_expansion_id].guid), {guid = springTile_GUID, position = riverSpringTile_Location.position, rotation = riverSpringTile_Location.rotation, smooth = false, callback_owner = Global, callback = "prepareStartingTileUnlock"}) == nil then
+                prepareStartingTileLock = false
+            end
+            while prepareStartingTileLock do
+                coroutine.yield(0)
+            end
+            wait(0.1) --need to wait before taking objects from this stack. Wait time is arbitrary, but seems to work.
         end
-        while prepareStartingTileLock do
-            coroutine.yield(0)
-        end
-        wait(0.1) --need to wait before taking objects from this stack. Wait time is arbitrary, but seems to work.
     end
 
     --Place the river fork tile
