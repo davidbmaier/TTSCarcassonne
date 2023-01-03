@@ -74,8 +74,9 @@ CONTROL_PANEL_GUID = '45460c'
 BUTTON_ANCHOR_GUID = '92d643'
 SOUNDBOARD_GUID = '9c8d01'
 EXPANSION_TABLE_GUID = 'f01594'
-BASE_STARTING_TILE_GUID = 'c107f0'
-BASE_TILE_STACK_GUID = '16d9db'
+ -- use C2 tiles
+BASE_STARTING_TILE_GUID = '271f4f'
+BASE_TILE_STACK_GUID = '76f623'
 
 CURRENT_PLAYER_MARKER = "➡ " -- symbol(s) that should be printed on the scoreboard before the current player
 
@@ -199,10 +200,15 @@ EXPANSION_BAGS = {
         ['WoFWheel'] = {guid = 'ef0143'},
         ['WoFPig'] = {guid = '97e9dc'}
     }},
-    ['River'] = {guid = '51fd29', contents = {
-        ['RiverSpringTile'] = {guid = 'bec44f'},
-        ['RiverLakeTile'] = {guid = 'f85830'},
-        ['RiverBodyTiles'] = {guid = 'd5e587'},
+    -- this uses C2 river tiles, the following values are for C3
+    -- container: 51fd29
+    --['RiverSpringTile'] = {guid = 'bec44f'},
+    --['RiverLakeTile'] = {guid = 'f85830'},
+    --['RiverBodyTiles'] = {guid = 'd5e587'},
+    ['River'] = {guid = '5ecb07', contents = {
+        ['RiverSpringTile'] = {guid = 'fa109f'},
+        ['RiverLakeTile'] = {guid = '2b4b8c'},
+        ['RiverBodyTiles'] = {guid = '5c7cc4'},
     }},
     ['RiverII'] = {guid = '5a29f0', contents = {
         ['RiverForkTile'] = {guid = '5a8213'},
