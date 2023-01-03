@@ -135,7 +135,7 @@ function takeObjectSafe(container, params)
     else
         return container.takeObject(params)
     end
-    printToAll("Warning: Object " .. params.guid .. " not found in container. It may have already been removed.", ERROR_COLOR)
+    printToAll("Warning: Object " .. params.guid .. " not found in container " .. container.guid .. ". It may have already been removed.", ERROR_COLOR)
 end
 
 --true if element is one of the elements of the table, otherwise false
