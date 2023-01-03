@@ -1,3 +1,4 @@
+<!-- commenting out for now, might clean it up later
 <Panel id="AIProgressPanel"
     width="1000"
     height="70"
@@ -10,3 +11,4 @@
     <ProgressBar id="AIProgressBar" alignment="MiddleCenter"
             rectAlignment="UpperCenter" width="1000" height="20" offsetXY="0 -50"> </ProgressBar>
 </Panel>
+-->
