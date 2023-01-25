@@ -167,16 +167,20 @@ function PnDIsDragonOnTile(XIndex, ZIndex)
     return false
 end
 
-function PnDIsDragonAwake(specialFeatures)
+function PnDIsDragonTile(specialFeatures)
     if specialFeatures ~= nil then
         for _, specialFeature in ipairs(specialFeatures) do
-            if specialFeature[1] == "Dragon" and dragonHasAwaken then
+            if specialFeature[1] == "Dragon" then
                 return true
             end
         end
     end
 
     return false
+end
+
+function PnDIsDragonAwake()
+    return dragonHasAwaken
 end
 
 
@@ -246,25 +250,25 @@ local function PnDMoveDragonDirection(i)
     end
 end
 
-local function PnDMoveDragonDownButton(object, sPlayer)
+function PnDMoveDragonDownButton(object, sPlayer)
     if checkGameButtonPrivileges(sPlayer) then
         PnDMoveDragonDirection(1)
     end
 end
 
-local function PnDMoveDragonLeftButton(object, sPlayer)
+function PnDMoveDragonLeftButton(object, sPlayer)
     if checkGameButtonPrivileges(sPlayer) then
         PnDMoveDragonDirection(2)
     end
 end
 
-local function PnDMoveDragonUpButton(object, sPlayer)
+function PnDMoveDragonUpButton(object, sPlayer)
     if checkGameButtonPrivileges(sPlayer) then
         PnDMoveDragonDirection(3)
     end
 end
 
-local function PnDMoveDragonRightButton(object, sPlayer)
+function PnDMoveDragonRightButton(object, sPlayer)
     if checkGameButtonPrivileges(sPlayer) then
         PnDMoveDragonDirection(4)
     end
@@ -328,7 +332,7 @@ function PnDCheckTileForDragon(xIndex, zIndex)
 
     local newTile = getObjectFromGUID(tileGrid[xIndex][zIndex].tile_guid)
     local newTileData = getTileDataForTile(newTile)
-    if PnDIsDragonAwake(newTileData.specialFeatures) then
+    if PnDIsDragonAwake() and PnDIsDragonTile(newTileData.specialFeatures) then
         dragonMovesRemaining = 6
         dragonIllegalTiles = {}
         currentMiniTurn = currentPlayer
