@@ -219,10 +219,13 @@ end
 
 --Automatically move and set the lake tile
 function riverAddLakeTile(lastPlacedTileX, lastPlacedTileZ, lastTile)
+    --This could be hidden behind a setting, but for now just disable this completely
+    --so that the players have to place all river tiles manually
+    return
 
+--[[
     --ensure there is a lake tile
     if lakeTile_GUID == nil then return end
-
     local lakeTile = getObjectFromGUID(lakeTile_GUID)
 
     --If the last tile placed is other end of the river, the surrounding
@@ -280,6 +283,7 @@ function riverAddLakeTile(lastPlacedTileX, lastPlacedTileZ, lastTile)
     if lakeTile_GUID ~= nil then
         allGameMessage({"MESSAGE_MANUALLY_PLACE_RIVER_LAKE"}, NEUTRAL_COLOR, nil)
     end
+]]--
 end
 
 function riverIsOpen()
