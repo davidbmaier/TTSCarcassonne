@@ -274,8 +274,8 @@ LOCALIZED_STRINGS = {
     ["MESSAGE_WHEEL_CROWN_SCORED"] = "{p1}'s follower scores {n1} points on the {s1} Crown.",
     ["MESSAGE_DRAGON_AWAKENED"] = "The dragon has awoken!",
     ["MESSAGE_DRAGON_MOVING"] = "The dragon is on the move!",
-    ["MESSAGE_DRAGON_TILE_DRAWN_BEFORE_AWAKENED"] = "Dragon tile drawn, but the dragon has not yet awaken. According to the rules, the tile should be placed back in the stack, shuffled, and a new tile drawn. It is not enforced by the script, though.",
-    ["MESSAGE_DRAGON_TILE_PLAYED_BEFORE_AWAKENED"] = "Dragon tile played, but the dragon has not yet awaken.",
+    ["MESSAGE_DRAGON_TILE_DRAWN_BEFORE_AWAKENED"] = "Dragon tile drawn, but the dragon has not yet awoken. According to the rules, the tile should be placed back in the stack, shuffled, and a new tile drawn. It is not enforced by the script, though.",
+    ["MESSAGE_DRAGON_TILE_PLAYED_BEFORE_AWAKENED"] = "Dragon tile played, but the dragon has not yet awoken.",
     ["MESSAGE_DRAGON_MOVES_REMAINING"] = "Dragon moves remaining: {n1}. {p1}'s turn to move.",
     ["MESSAGE_DRAGON_STUCK"] = "Dragon has no valid places to move to. Ending dragon movement.",
     --{n1} is the number of figures. {f1} is the name of the figure. ie. "5 sheep have been eaten..."

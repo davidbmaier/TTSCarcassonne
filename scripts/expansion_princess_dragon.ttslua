@@ -332,33 +332,35 @@ function PnDCheckTileForDragon(xIndex, zIndex)
 
     local newTile = getObjectFromGUID(tileGrid[xIndex][zIndex].tile_guid)
     local newTileData = getTileDataForTile(newTile)
-    if PnDIsDragonAwake() and PnDIsDragonTile(newTileData.specialFeatures) then
-        dragonMovesRemaining = 6
-        dragonIllegalTiles = {}
-        currentMiniTurn = currentPlayer
-        local forbiddenZones = {}
-        PnDCheckTile(forbiddenZones)
-        CoCCheckTileForDragon(forbiddenZones)
-        if controlPanelSettings['StartingTileWoF'] then
-            table.insert(forbiddenZones, EXPANSION_BAGS['WoF'].contents['WoFStartingTiles'].contents[6].guid)
-            table.insert(forbiddenZones, EXPANSION_BAGS['WoF'].contents['WoFStartingTiles'].contents[7].guid)
-            table.insert(forbiddenZones, EXPANSION_BAGS['WoF'].contents['WoFStartingTiles'].contents[10].guid)
-            table.insert(forbiddenZones, EXPANSION_BAGS['WoF'].contents['WoFStartingTiles'].contents[11].guid)
-        end
-        for _, forbiddenZone_GUID in ipairs(forbiddenZones) do
-            forbiddenZone = getObjectFromGUID(forbiddenZone_GUID)
-            if forbiddenZone ~= nil then
-                local xIllegalIndex, zIllegalIndex, _, _ = getFigureTileLocation(forbiddenZone)
-                if tileGridOccupied(xIllegalIndex, zIllegalIndex) then
-                    table.insert(dragonIllegalTiles, {xIllegalIndex, zIllegalIndex})
+    if PnDIsDragonTile(newTileData.specialFeatures) then
+        if PnDIsDragonAwake() then
+            dragonMovesRemaining = 6
+            dragonIllegalTiles = {}
+            currentMiniTurn = currentPlayer
+            local forbiddenZones = {}
+            PnDCheckTile(forbiddenZones)
+            CoCCheckTileForDragon(forbiddenZones)
+            if controlPanelSettings['StartingTileWoF'] then
+                table.insert(forbiddenZones, EXPANSION_BAGS['WoF'].contents['WoFStartingTiles'].contents[6].guid)
+                table.insert(forbiddenZones, EXPANSION_BAGS['WoF'].contents['WoFStartingTiles'].contents[7].guid)
+                table.insert(forbiddenZones, EXPANSION_BAGS['WoF'].contents['WoFStartingTiles'].contents[10].guid)
+                table.insert(forbiddenZones, EXPANSION_BAGS['WoF'].contents['WoFStartingTiles'].contents[11].guid)
+            end
+            for _, forbiddenZone_GUID in ipairs(forbiddenZones) do
+                forbiddenZone = getObjectFromGUID(forbiddenZone_GUID)
+                if forbiddenZone ~= nil then
+                    local xIllegalIndex, zIllegalIndex, _, _ = getFigureTileLocation(forbiddenZone)
+                    if tileGridOccupied(xIllegalIndex, zIllegalIndex) then
+                        table.insert(dragonIllegalTiles, {xIllegalIndex, zIllegalIndex})
+                    end
                 end
             end
+            allGameMessage({"MESSAGE_DRAGON_MOVING"}, NEUTRAL_COLOR)
+            return true
+        else
+            allGameMessage({"MESSAGE_DRAGON_TILE_PLAYED_BEFORE_AWAKENED"}, NEUTRAL_COLOR)
         end
-        allGameMessage({"MESSAGE_DRAGON_MOVING"}, NEUTRAL_COLOR)
-        return true
     end
-
-    allGameMessage({"MESSAGE_DRAGON_TILE_PLAYED_BEFORE_AWAKENED"}, NEUTRAL_COLOR)
     return false
 end
 
