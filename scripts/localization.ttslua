@@ -54,6 +54,7 @@ LOCALIZED_STRINGS = {
     ["BUTTON_LABEL_END_GAME"] = "End game\n(score\npoints)",
     ["BUTTON_LABEL_SCORE_SUMMARY"] = "Score\nSummary",
     ["BUTTON_LABEL_SKIP_TURN"] = "Skip\nTurn",
+    ["BUTTON_LABEL_SHOW_DOCS"] = "Wiki",
     ["BUTTON_LABEL_MARKERS"] = "Show\nMarkers:\n",
     ["BUTTON_LABEL_PROMPT_PLACE_FIGURE"] = "Place a figure\nOR",
     ["BUTTON_LABEL_SKIP_PLACING_FIGURE"] = "Skip placing\nfigure",

@@ -383,6 +383,11 @@ skipTurnButtonParam = {
    position = {2.8, 0.1, 0.0}, width = 750, height=600, font_size = 150, function_owner = nil
 }
 
+showDocsButtonParam = {
+    index = 3, click_function = 'showDocsButton',
+    position = {-2.83, 0.1, 2.0}, width = 750, height=600, font_size = 150, function_owner = nil
+}
+
 --settings changed by the control panel
 --default control panel settings are defined here
 controlPanelSettings = {

@@ -75,6 +75,28 @@ function skipTurnButton(object, sPlayer)
     end
 end
 
+wikiTablet = nil
+
+function showDocsButton(object, sPlayer)
+    if checkGameButtonPrivileges(sPlayer) then
+        if (wikiTablet) then
+            destroyObject(wikiTablet)
+            wikiTablet = nil
+        else
+            tabletParameters = {}
+            tabletParameters.type = "Tablet"
+            tabletParameters.position = {-20.5, 1, 22}
+            tabletParameters.scale = {.9, .9, .9}
+            tabletParameters.rotation = {0, 180, 0}
+            tabletParameters.callback_function = function(tablet)
+                tablet.Browser.url = "https://wikicarpedia.com/index.php/Main_Page"
+                wikiTablet = tablet
+            end
+            spawnObject(tabletParameters)
+        end
+    end
+end
+
 function endTurn()
     for _, object in ipairs(getAllObjects()) do
         if tostring(object) == 'Card(Clone) (LuaGameObjectScript)' or table.contains(FOLLOWER_TYPES, object.getVar('figureName')) or table.contains(SPECIAL_FIGURE_TYPES, object.getVar('figureName')) then
@@ -167,6 +189,8 @@ function initializeButtons()
     buttonBoard.createButton(endGameButtonParam)
     skipTurnButtonParam.label = translate('BUTTON_LABEL_SKIP_TURN')
     buttonBoard.createButton(skipTurnButtonParam)
+    showDocsButtonParam.label = translate('BUTTON_LABEL_SHOW_DOCS')
+    buttonBoard.createButton(showDocsButtonParam)
 end
 
 -- Activates when button is pressed
