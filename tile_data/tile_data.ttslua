@@ -580,7 +580,7 @@ globalTileData = {
 #include !\TTSCarcassonne\tile_data\base (v2)\Card.2515e7.ttslua
 #include !\TTSCarcassonne\tile_data\base (v2)\Card.271f4f.ttslua
 #include !\TTSCarcassonne\tile_data\base (v2)\Card.287e6a.ttslua
-#include !\TTSCarcassonne\tile_data\base (v2)\Card.2cdf4c.ttslua
+#include !\TTSCarcassonne\tile_data\base (v2)\Card.5b38dc.ttslua
 #include !\TTSCarcassonne\tile_data\base (v2)\Card.2e9778.ttslua
 #include !\TTSCarcassonne\tile_data\base (v2)\Card.31e98d.ttslua
 #include !\TTSCarcassonne\tile_data\base (v2)\Card.31fe13.ttslua
