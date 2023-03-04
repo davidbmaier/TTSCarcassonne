@@ -105,6 +105,9 @@ function towerCaptureFollowerButton(object, sPlayer)
         end
 
         removeDependentFigures(object)
+        -- run the coroutine to return figures from the removedFigures table (e.g. builders)
+        -- otherwise they're only scheduled to be removed at some later point (until which they still count, which shouldn't be the case)
+        returnFigures(true)
         if object.getVar('owner') == activePlayers[currentPlayer] then
             table.insert(removedFigures, {guid=object.getGUID(), winner=false})
             allGameMessage({"MESSAGE_TOWER_SELF_CAPTURE", {'{c1}', object.getDescription()}, {'{f1}', object.getName()}}, player_color_tints[object.getVar('owner')])

@@ -974,9 +974,6 @@ function removeDependentFigures(object)
             end
         end
     end
-    -- run the coroutine to return figures from the removedFigures table (e.g. builders)
-    -- otherwise they're only scheduled to be removed at some later point (until which they still count, which shouldn't be the case)
-    returnFigures(true)
 end
 
 function clearFigureOptions()
